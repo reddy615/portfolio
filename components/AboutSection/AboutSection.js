@@ -16,45 +16,33 @@ const AboutSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const nextSection = document.getElementById('skills-section');
+      const nextCard = nextSection?.querySelector('[class*=card]');
+
       const tl = gsap.timeline({
-        defaults: { ease: 'power3.out' },
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play reverse play reverse',
-          markers: false
+          start: 'top 45%',
+          end: 'bottom 25%',
+          scrub: 0.35,
+          markers: false,
         }
       });
 
-      tl.fromTo(cardRef.current,
-        { opacity: 0, y: 80, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          boxShadow: '0 30px 100px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 140, 58, 0.12)'
-        }
-      );
+      tl.to(cardRef.current, {
+        opacity: 0.4,
+        scale: 0.92,
+        y: -80,
+        ease: 'power1.out',
+      }, 0);
 
-      tl.fromTo(titleRef.current.children,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 },
-        '-=0.8'
-      );
-
-      tl.fromTo(contentRef.current.children,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 },
-        '-=0.6'
-      );
-
-      tl.fromTo(tagsRef.current.children,
-        { opacity: 0, scale: 0.85 },
-        { opacity: 1, scale: 1, duration: 0.6, stagger: 0.08 },
-        '-=0.7'
-      );
+      if (nextCard) {
+        tl.fromTo(nextCard,
+          { opacity: 0.92, scale: 0.92, y: 80 },
+          { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },
+          0
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
