@@ -179,12 +179,12 @@
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 140, 58, 0.2);
+  transform: translateY(-6px) scale(1.02);
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 140, 58, 0.28);
   box-shadow: 
-    0 20px 45px rgba(0, 0, 0, 0.35),
-    0 0 20px rgba(255, 140, 58, 0.05);
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(255, 140, 58, 0.12);
 }
 
 .cardIcon {
@@ -264,6 +264,37 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.statusBadge {
+  display: inline-block;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffb982;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.statusBadgeLive {
+  display: inline-block;
+  margin-top: 6px;
+  background: rgba(255, 140, 58, 0.12);
+  color: #ff8c3a;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255,140,58,0.18);
+}
+
+.projectDescription {
+  color: rgba(255,255,255,0.75);
+  margin-top: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .skillTag {

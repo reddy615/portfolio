@@ -67,13 +67,15 @@ const ProjectsSection = () => {
         <div ref={gridRef} className={styles.twoColumnGrid}>
           {/* Project 1 */}
           <div className={styles.card}>
-            <div className={styles.projectImage} aria-hidden="true">Image Placeholder</div>
+            <div className={styles.projectImage} aria-hidden="true">AI Interview Platform</div>
             <div className={styles.cardIcon}>
               <svg viewBox="0 0 24 24">
                 <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
               </svg>
             </div>
-            <h3 className={styles.cardTitle}>Doctors Farms Resort Booking</h3>
+            <h3 className={styles.cardTitle}>AI Interview Preparation Platform</h3>
+            <div className={styles.statusBadge}>In Development</div>
+            <p className={styles.projectDescription}>An AI-powered interview preparation platform that helps students prepare for technical interviews through AI-generated questions, coding assessments, mock interviews, performance analytics, and personalized feedback.</p>
             <ul className={styles.projectSpecs}>
               <li className={styles.projectSpecItem}>Resort booking platform</li>
               <li className={styles.projectSpecItem}>Responsive UI layout</li>
@@ -83,28 +85,31 @@ const ProjectsSection = () => {
             <div className={styles.techStackWrapper}>
               <div className={styles.techStackLabel}>Tech Stack</div>
               <div className={styles.skillsList}>
-                <span className={styles.skillTag}>React</span>
+                <span className={styles.skillTag}>React.js</span>
                 <span className={styles.skillTag}>Node.js</span>
                 <span className={styles.skillTag}>Express.js</span>
                 <span className={styles.skillTag}>MongoDB</span>
+                <span className={styles.skillTag}>OpenAI / Gemini</span>
+                <span className={styles.skillTag}>Judge0</span>
               </div>
             </div>
 
             <div className={styles.projectActions}>
-              <a className={`${styles.projectBtn} ${styles.githubBtn}`} href="#" target="_blank" rel="noreferrer">GitHub</a>
-              <a className={`${styles.projectBtn} ${styles.liveBtn}`} href="#" target="_blank" rel="noreferrer">Live Demo</a>
+              <a className={`${styles.projectBtn} ${styles.githubBtn}`} href="https://github.com/reddy615/AI" target="_blank" rel="noreferrer">GitHub</a>
             </div>
           </div>
 
           {/* Project 2 */}
           <div className={styles.card}>
-            <div className={styles.projectImage} aria-hidden="true">Image Placeholder</div>
+            <div className={styles.projectImage} aria-hidden="true">Doctors Farms</div>
             <div className={styles.cardIcon}>
               <svg viewBox="0 0 24 24">
                 <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0012 18.75c-.93 0-1.822-.377-2.487-1.047l-.547-.548z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
               </svg>
             </div>
-            <h3 className={styles.cardTitle}>AI Interview Prep Platform</h3>
+            <h3 className={styles.cardTitle}>Doctors Farms Resort Booking Website</h3>
+            <div className={styles.statusBadgeLive}>Live</div>
+            <p className={styles.projectDescription}>A full-stack resort booking platform that allows users to explore rooms, send booking inquiries, and interact with a responsive modern UI. The system includes email notifications, inquiry management, and cloud deployment.</p>
             <ul className={styles.projectSpecs}>
               <li className={styles.projectSpecItem}>AI-generated interview questions</li>
               <li className={styles.projectSpecItem}>Interactive coding assessments</li>
@@ -114,16 +119,17 @@ const ProjectsSection = () => {
             <div className={styles.techStackWrapper}>
               <div className={styles.techStackLabel}>Tech Stack</div>
               <div className={styles.skillsList}>
-                <span className={styles.skillTag}>MERN Stack</span>
-                <span className={styles.skillTag}>AI APIs</span>
+                <span className={styles.skillTag}>React.js</span>
                 <span className={styles.skillTag}>Node.js</span>
-                <span className={styles.skillTag}>React</span>
+                <span className={styles.skillTag}>Express.js</span>
+                <span className={styles.skillTag}>MongoDB</span>
+                <span className={styles.skillTag}>Railway</span>
               </div>
             </div>
 
             <div className={styles.projectActions}>
-              <a className={`${styles.projectBtn} ${styles.githubBtn}`} href="#" target="_blank" rel="noreferrer">GitHub</a>
-              <a className={`${styles.projectBtn} ${styles.liveBtn}`} href="#" target="_blank" rel="noreferrer">Live Demo</a>
+              <a className={`${styles.projectBtn} ${styles.githubBtn}`} href="https://github.com/reddy615/doctors-farms" target="_blank" rel="noreferrer">GitHub</a>
+              <a className={`${styles.projectBtn} ${styles.liveBtn}`} href="https://doctorsfarmnunna.in" target="_blank" rel="noreferrer">Live Demo</a>
             </div>
           </div>
         </div>
