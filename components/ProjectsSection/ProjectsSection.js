@@ -55,15 +55,19 @@ const ProjectsSection = () => {
 
       <div ref={cardRef} className={styles.projectsCard}>
         {/* Section Title Header */}
-        <div ref={titleRef} className={styles.sectionHeader}>
-          <div className={styles.sectionTagline}>Selected Works</div>
-          <h2 className={styles.sectionTitle}>Featured Projects</h2>
+        <div ref={titleRef} className={styles.sectionHeaderRow}>
+          <div className={styles.sectionNumber}>04</div>
+          <div>
+            <div className={styles.sectionTagline}>Selected Works</div>
+            <h2 className={styles.sectionTitle}>PROJECTS</h2>
+          </div>
         </div>
 
         {/* Project Cards Grid */}
         <div ref={gridRef} className={styles.twoColumnGrid}>
           {/* Project 1 */}
           <div className={styles.card}>
+            <div className={styles.projectImage} aria-hidden="true">Image Placeholder</div>
             <div className={styles.cardIcon}>
               <svg viewBox="0 0 24 24">
                 <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
@@ -85,10 +89,16 @@ const ProjectsSection = () => {
                 <span className={styles.skillTag}>MongoDB</span>
               </div>
             </div>
+
+            <div className={styles.projectActions}>
+              <a className={`${styles.projectBtn} ${styles.githubBtn}`} href="#" target="_blank" rel="noreferrer">GitHub</a>
+              <a className={`${styles.projectBtn} ${styles.liveBtn}`} href="#" target="_blank" rel="noreferrer">Live Demo</a>
+            </div>
           </div>
 
           {/* Project 2 */}
           <div className={styles.card}>
+            <div className={styles.projectImage} aria-hidden="true">Image Placeholder</div>
             <div className={styles.cardIcon}>
               <svg viewBox="0 0 24 24">
                 <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0012 18.75c-.93 0-1.822-.377-2.487-1.047l-.547-.548z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
@@ -109,6 +119,11 @@ const ProjectsSection = () => {
                 <span className={styles.skillTag}>Node.js</span>
                 <span className={styles.skillTag}>React</span>
               </div>
+            </div>
+
+            <div className={styles.projectActions}>
+              <a className={`${styles.projectBtn} ${styles.githubBtn}`} href="#" target="_blank" rel="noreferrer">GitHub</a>
+              <a className={`${styles.projectBtn} ${styles.liveBtn}`} href="#" target="_blank" rel="noreferrer">Live Demo</a>
             </div>
           </div>
         </div>

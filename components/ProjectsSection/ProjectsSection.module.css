@@ -65,6 +65,21 @@
   margin-bottom: 24px;
 }
 
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.sectionNumber {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(255, 140, 58, 0.15);
+  line-height: 1;
+  font-family: var(--font-outfit), sans-serif;
+}
+
 .sectionTagline {
   font-size: 0.8rem;
   letter-spacing: 0.25em;
@@ -113,6 +128,54 @@
   padding: 32px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.projectImage {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.22);
+  font-weight: 600;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
+
+.projectActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.projectBtn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.25s ease;
+}
+
+.githubBtn {
+  background: rgba(255,255,255,0.04);
+  color: #ffffff;
+}
+
+.liveBtn {
+  background: #ff8c3a;
+  color: #050508;
+  border-color: #ff8c3a;
+}
+
+.projectBtn:hover {
+  transform: translateY(-3px);
 }
 
 .card:hover {
