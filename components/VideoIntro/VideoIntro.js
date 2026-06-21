@@ -9,8 +9,7 @@ const VideoIntro = () => {
   const bgVideoRef = useRef(null);
   const fgVideoRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const autoScrollTimerRef = useRef(null);
   const autoScrollCancelled = useRef(false);
   const removeCancelListenersRef = useRef(null);
@@ -44,29 +43,6 @@ const VideoIntro = () => {
     syncPlayback(nextState);
   };
 
-  // Start experience - initial button click to play video with audio
-  const handleStartExperience = () => {
-    console.log('Start Experience button clicked - playing video with audio');
-    setHasStarted(true);
-    setIsPlaying(true);
-    
-    // Play videos after state updates
-    setTimeout(() => {
-      const bg = bgVideoRef.current;
-      const fg = fgVideoRef.current;
-      if (fg) {
-        fg.play().catch((err) => {
-          console.error('Foreground video play failed:', err);
-        });
-      }
-      if (bg) {
-        bg.play().catch(() => {});
-      }
-    }, 0);
-  };
-
-
-
   // Clicking scroll down indicator
   const handleScrollDown = () => {
     const aboutSection = document.getElementById('who-am-i');
@@ -90,18 +66,17 @@ const VideoIntro = () => {
 
     if (bg && fg) {
       bg.muted = true; // bg video MUST always be muted
-      // fg video is NOT muted - will play with audio when user clicks Start button
 
-      // Only autoplay background layer (muted)
-      const startBgAutoplay = () => {
-        console.log('Starting background video autoplay (muted)');
+      const startAutoplay = () => {
+        console.log('Attempting autoplay of both video layers');
         bg.play().catch(() => console.warn('Background video autoplay blocked'));
+        fg.play().catch((err) => console.warn('Foreground video autoplay blocked:', err));
       };
       
       if (document.readyState === 'complete') {
-        startBgAutoplay();
+        startAutoplay();
       } else {
-        window.addEventListener('load', startBgAutoplay);
+        window.addEventListener('load', startAutoplay);
       }
     }
 
@@ -284,28 +259,13 @@ const VideoIntro = () => {
           className={styles.fgVideo}
           src="/videos/intro.mp4"
           playsInline
+          autoPlay
           onPlay={handleFgPlay}
           onPause={handleFgPause}
           onEnded={handleVideoEnd}
           onLoadedData={() => console.log('Foreground video loaded: /videos/intro.mp4')}
           onError={(e) => console.error('Foreground video error:', e)}
         />
-        
-        {/* Start Experience overlay - shown before user clicks */}
-        {!hasStarted && (
-          <div className={styles.startExperienceOverlay}>
-            <button 
-              className={styles.startExperienceBtn}
-              onClick={handleStartExperience}
-              aria-label="Start experience with audio"
-            >
-              <span>START EXPERIENCE</span>
-              <svg viewBox="0 0 24 24" className={styles.playIcon}>
-                <path d="M8 5v14l11-7z" fill="currentColor" />
-              </svg>
-            </button>
-          </div>
-        )}
       </div>
 
       {/* 4. Portfolio Content Overlays */}
@@ -350,38 +310,34 @@ const VideoIntro = () => {
       </div>
 
       {/* 5. Glassmorphism Controls Panel */}
-      {hasStarted && (
-        <div className={styles.controlsWrapper}>
-          {/* Play/Pause Button */}
-          <button 
-            className={styles.glassBtn} 
-            onClick={togglePlay} 
-            aria-label={isPlaying ? 'Pause video' : 'Play video'}
-          >
-            {isPlaying ? (
-              // Pause Icon
-              <svg viewBox="0 0 24 24">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-              </svg>
-            ) : (
-              // Play Icon
-              <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            )}
-          </button>
-        </div>
-      )}
+      <div className={styles.controlsWrapper}>
+        {/* Play/Pause Button */}
+        <button 
+          className={styles.glassBtn} 
+          onClick={togglePlay} 
+          aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        >
+          {isPlaying ? (
+            // Pause Icon
+            <svg viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+          ) : (
+            // Play Icon
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          )}
+        </button>
+      </div>
 
       {/* 6. Centered Pulsing Scroll Down Indicator */}
-      {hasStarted && (
-        <div className={styles.scrollIndicator} onClick={handleScrollDown}>
-          <span>SCROLL DOWN</span>
-          <div className={styles.scrollLineContainer}>
-            <div className={styles.scrollLinePulse} />
-          </div>
+      <div className={styles.scrollIndicator} onClick={handleScrollDown}>
+        <span>SCROLL DOWN</span>
+        <div className={styles.scrollLineContainer}>
+          <div className={styles.scrollLinePulse} />
         </div>
-      )}
+      </div>
     </div>
   );
 };
