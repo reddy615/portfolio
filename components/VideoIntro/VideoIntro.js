@@ -10,6 +10,7 @@ const VideoIntro = () => {
   const fgVideoRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const autoScrollTimerRef = useRef(null);
   const autoScrollCancelled = useRef(false);
   const removeCancelListenersRef = useRef(null);
@@ -41,6 +42,18 @@ const VideoIntro = () => {
     const nextState = !isPlaying;
     setIsPlaying(nextState);
     syncPlayback(nextState);
+  };
+
+  // Enable audio for the foreground video
+  const handleEnableAudio = () => {
+    const fg = fgVideoRef.current;
+    if (fg) {
+      fg.muted = false;
+      fg.volume = 1;
+      fg.play().catch((err) => console.warn('Foreground audio playback failed:', err));
+      setAudioEnabled(true);
+      console.log('Audio enabled for foreground video');
+    }
   };
 
   // Clicking scroll down indicator
@@ -325,6 +338,16 @@ const VideoIntro = () => {
             </svg>
           )}
         </button>
+
+        {!audioEnabled && (
+          <button
+            className={styles.audioBtn}
+            onClick={handleEnableAudio}
+            aria-label="Enable audio"
+          >
+            ENABLE AUDIO
+          </button>
+        )}
       </div>
 
       {/* 6. Centered Pulsing Scroll Down Indicator */}
