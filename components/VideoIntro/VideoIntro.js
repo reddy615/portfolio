@@ -335,7 +335,10 @@ const VideoIntro = () => {
         {/* Play/Pause Button */}
         <button 
           className={styles.glassBtn} 
-          onClick={togglePlay} 
+          onClick={() => {
+            console.log('Play button clicked');
+            togglePlay();
+          }}
           aria-label={isPlaying ? 'Pause video' : 'Play video'}
         >
           {isPlaying ? (
@@ -353,7 +356,10 @@ const VideoIntro = () => {
 
         <button
           className={styles.glassBtn}
-          onClick={handleToggleAudio}
+          onClick={() => {
+            console.log('Speaker button clicked');
+            handleToggleAudio();
+          }}
           aria-label={audioEnabled ? 'Mute audio' : 'Enable audio'}
         >
           {audioEnabled ? (

@@ -257,10 +257,11 @@
   position: absolute;
   bottom: 80px;
   right: 10%;
-  z-index: 5;
+  z-index: 65;
   display: flex;
   align-items: center;
   gap: 16px;
+  pointer-events: auto;
 }
 
 .glassBtn {
