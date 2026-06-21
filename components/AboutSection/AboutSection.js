@@ -22,9 +22,12 @@ const AboutSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 45%',
-          end: 'bottom 25%',
+          start: 'top top',
+          end: 'bottom top+=160',
           scrub: 0.35,
+          pin: cardRef.current,
+          pinSpacing: false,
+          anticipatePin: 1,
           markers: false,
         }
       });
@@ -37,6 +40,7 @@ const AboutSection = () => {
       }, 0);
 
       if (nextCard) {
+        gsap.set(nextCard, { opacity: 0.92, scale: 0.92, y: 80 });
         tl.fromTo(nextCard,
           { opacity: 0.92, scale: 0.92, y: 80 },
           { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },

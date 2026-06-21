@@ -61,9 +61,12 @@ const EducationSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 45%',
-          end: 'bottom 25%',
+          start: 'top top',
+          end: 'bottom top+=160',
           scrub: 0.35,
+          pin: cardRef.current,
+          pinSpacing: false,
+          anticipatePin: 1,
           markers: false
         }
       });

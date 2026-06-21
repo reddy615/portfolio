@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styles from './VideoIntro.module.css';
 
 const VideoIntro = () => {
@@ -91,82 +92,112 @@ const VideoIntro = () => {
       fg.play().catch((err) => console.warn('Foreground video autoplay blocked:', err));
     }
 
-    // 3. GSAP Entrance Animations
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    gsap.registerPlugin(ScrollTrigger);
 
-      // Animate background blur fade-in
-      tl.fromTo(
+    const ctx = gsap.context(() => {
+      const aboutSection = document.getElementById('who-am-i');
+      const aboutCard = aboutSection?.querySelector('[class*=card]');
+
+      if (aboutCard) {
+        gsap.set(aboutCard, { opacity: 0.92, scale: 0.92, y: 80 });
+      }
+
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top+=180',
+          scrub: 0.35,
+          pin: true,
+          pinSpacing: false,
+          anticipatePin: 1,
+          markers: false,
+        },
+      });
+
+      heroTl.to(containerRef.current, {
+        opacity: 0.4,
+        scale: 0.92,
+        y: -80,
+        ease: 'power1.out',
+      }, 0);
+
+      heroTl.to(`.${styles.videoForegroundWrapper}`, {
+        scale: 0.98,
+        opacity: 0.85,
+        ease: 'power1.out',
+      }, 0);
+
+      heroTl.to(`.${styles.cinematicOverlay}`, {
+        opacity: 1,
+        ease: 'power1.out',
+      }, 0);
+
+      if (aboutCard) {
+        heroTl.fromTo(aboutCard,
+          { opacity: 0.92, scale: 0.92, y: 80 },
+          { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },
+          0
+        );
+      }
+
+      const entranceTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      entranceTl.fromTo(
         `.${styles.bgVideo}`,
         { opacity: 0 },
         { opacity: 0.55, duration: 2.0 }
       );
-
-      // Animate foreground video container card (scale up and fade in)
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.videoForegroundWrapper}`,
         { opacity: 0, scale: 1.15 },
         { opacity: 1, scale: 1, duration: 1.8 },
         '-=1.5'
       );
-
-
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.titleLine}:first-child`,
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 1.2 },
         '-=1.0'
       );
-
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.titleLine}:last-child`,
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 1.2 },
         '-=1.0'
       );
-
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.designation}`,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 1.0 },
         '-=1.0'
       );
-
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.heroBadge}`,
         { opacity: 0, y: 15 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.05 },
         '-=0.8'
       );
-
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.heroButtons}`,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 1.0 },
         '-=0.6'
       );
-
-      // Fade in controls panel
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.controlsWrapper}`,
         { opacity: 0, scale: 0.8 },
         { opacity: 1, scale: 1, duration: 1.0 },
         '-=0.7'
       );
-
-      // Fade in scroll indicator at bottom
-      tl.fromTo(
+      entranceTl.fromTo(
         `.${styles.scrollIndicator}`,
         { opacity: 0, y: 15 },
         { opacity: 1, y: 0, duration: 1.2 },
         '-=0.8'
       );
-
-      // No auto-scroll on GSAP timeline completion — scrolling is triggered only by video end
     }, containerRef);
 
     return () => {
-      window.removeEventListener('load', startAutoplay);
       // Clear any pending auto-scroll timer and remove interaction listeners
       if (autoScrollTimerRef.current) {
         clearTimeout(autoScrollTimerRef.current);
