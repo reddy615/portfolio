@@ -44,16 +44,21 @@ const VideoIntro = () => {
     syncPlayback(nextState);
   };
 
-  // Enable audio for the foreground video
-  const handleEnableAudio = () => {
+  // Toggle audio for the foreground video
+  const handleToggleAudio = () => {
     const fg = fgVideoRef.current;
-    if (fg) {
-      fg.muted = false;
-      fg.volume = 1;
+    if (!fg) return;
+
+    const nextEnabled = !audioEnabled;
+    fg.muted = !nextEnabled;
+    fg.volume = nextEnabled ? 1 : 0;
+
+    if (nextEnabled) {
       fg.play().catch((err) => console.warn('Foreground audio playback failed:', err));
-      setAudioEnabled(true);
-      console.log('Audio enabled for foreground video');
     }
+
+    setAudioEnabled(nextEnabled);
+    console.log(nextEnabled ? 'Audio enabled for foreground video' : 'Audio muted for foreground video');
   };
 
   // Clicking scroll down indicator
@@ -339,15 +344,25 @@ const VideoIntro = () => {
           )}
         </button>
 
-        {!audioEnabled && (
-          <button
-            className={styles.audioBtn}
-            onClick={handleEnableAudio}
-            aria-label="Enable audio"
-          >
-            ENABLE AUDIO
-          </button>
-        )}
+        <button
+          className={styles.glassBtn}
+          onClick={handleToggleAudio}
+          aria-label={audioEnabled ? 'Mute audio' : 'Enable audio'}
+        >
+          {audioEnabled ? (
+            <svg viewBox="0 0 24 24">
+              <path d="M5 9v6h4l5 5V4L9 9H5z" />
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03" stroke="currentColor" strokeWidth="2" fill="none" />
+              <path d="M18.5 5.5c2.92 2.92 2.92 7.66 0 10.58" stroke="currentColor" strokeWidth="2" fill="none" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24">
+              <path d="M5 9v6h4l5 5V4L9 9H5z" />
+              <line x1="16" y1="8" x2="20" y2="12" stroke="currentColor" strokeWidth="2" />
+              <line x1="20" y1="8" x2="16" y2="16" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* 6. Centered Pulsing Scroll Down Indicator */}
