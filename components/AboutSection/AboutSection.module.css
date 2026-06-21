@@ -180,7 +180,6 @@
 @media (max-width: 768px) {
   .aboutSection {
     padding: 80px 6%;
-    min-height: auto;
   }
   .card {
     padding: 40px 24px;

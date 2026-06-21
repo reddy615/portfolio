@@ -237,7 +237,6 @@
 @media (max-width: 768px) {
   .educationSection {
     padding: 60px 5%;
-    min-height: auto;
   }
 
   .card {
