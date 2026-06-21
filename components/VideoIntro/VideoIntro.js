@@ -63,13 +63,17 @@ const VideoIntro = () => {
     const bg = bgVideoRef.current;
     const fg = fgVideoRef.current;
 
+    console.log('VideoIntro component mounted');
+    console.log('Video source:', '/videos/intro.mp4');
+
     if (bg && fg) {
       bg.muted = true; // bg video MUST always be muted
 
       // Autoplay attempt
       const startAutoplay = () => {
-        bg.play().catch(() => {});
-        fg.play().catch(() => {});
+        console.log('Attempting autoplay of both video layers');
+        bg.play().catch(() => console.warn('Background video autoplay blocked'));
+        fg.play().catch(() => console.warn('Foreground video autoplay blocked'));
       };
       
       if (document.readyState === 'complete') {
@@ -257,11 +261,14 @@ const VideoIntro = () => {
           ref={fgVideoRef}
           className={styles.fgVideo}
           src="/videos/intro.mp4"
+          muted
           playsInline
           autoPlay
           onPlay={handleFgPlay}
           onPause={handleFgPause}
           onEnded={handleVideoEnd}
+          onLoadedData={() => console.log('Foreground video loaded: /videos/intro.mp4')}
+          onError={(e) => console.error('Foreground video error:', e)}
         />
       </div>
 
