@@ -95,52 +95,6 @@ const VideoIntro = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const aboutSection = document.getElementById('who-am-i');
-      const aboutCard = aboutSection?.querySelector('[class*=card]');
-
-      if (aboutCard) {
-        gsap.set(aboutCard, { opacity: 0.92, scale: 0.92, y: 80 });
-      }
-
-      const heroTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: 'bottom top+=180',
-          scrub: 0.35,
-          pin: true,
-          pinSpacing: false,
-          anticipatePin: 1,
-          markers: false,
-        },
-      });
-
-      heroTl.to(containerRef.current, {
-        opacity: 0.4,
-        scale: 0.92,
-        y: -80,
-        ease: 'power1.out',
-      }, 0);
-
-      heroTl.to(`.${styles.videoForegroundWrapper}`, {
-        scale: 0.98,
-        opacity: 0.85,
-        ease: 'power1.out',
-      }, 0);
-
-      heroTl.to(`.${styles.cinematicOverlay}`, {
-        opacity: 1,
-        ease: 'power1.out',
-      }, 0);
-
-      if (aboutCard) {
-        heroTl.fromTo(aboutCard,
-          { opacity: 0.92, scale: 0.92, y: 80 },
-          { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },
-          0
-        );
-      }
-
       const entranceTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
       entranceTl.fromTo(
         `.${styles.bgVideo}`,
