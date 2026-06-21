@@ -2,7 +2,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styles from './EducationSection.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const EducationSection = () => {
   const sectionRef = useRef(null);
@@ -47,54 +50,50 @@ const EducationSection = () => {
   ];
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-          // 1. Main card fades in and slides upward
-          tl.to(cardRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            boxShadow: '0 30px 100px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 140, 58, 0.12)'
-          });
-
-          // 2. Section number "03" scales and fades in
-          tl.fromTo(numberRef.current,
-            { opacity: 0, scale: 0.5 },
-            { opacity: 1, scale: 1, duration: 0.8 },
-            '-=0.8'
-          );
-
-          // 3. Title slides in
-          tl.fromTo(titleRef.current,
-            { opacity: 0, x: -20 },
-            { opacity: 1, x: 0, duration: 0.8 },
-            '-=0.6'
-          );
-
-          // 4. Stagger timeline entries
-          const entries = timelineRef.current.querySelectorAll(`.${styles.timelineEntry}`);
-          tl.fromTo(entries,
-            { opacity: 0, y: 30, x: -20 },
-            { opacity: 1, y: 0, x: 0, duration: 0.8, stagger: 0.15 },
-            '-=0.6'
-          );
-
-          observer.unobserve(section);
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play reverse play reverse',
+          markers: false
         }
       });
-    }, { threshold: 0.12 });
 
-    observer.observe(section);
+      tl.fromTo(cardRef.current,
+        { opacity: 0, y: 80, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          boxShadow: '0 30px 100px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 140, 58, 0.12)'
+        }
+      );
 
-    return () => {
-      observer.disconnect();
-    };
+      tl.fromTo(numberRef.current,
+        { opacity: 0, scale: 0.5 },
+        { opacity: 1, scale: 1, duration: 0.8 },
+        '-=0.8'
+      );
+
+      tl.fromTo(titleRef.current,
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.8 },
+        '-=0.6'
+      );
+
+      const timelineItems = timelineRef.current.querySelectorAll(`.${styles.timelineEntry}`);
+      tl.fromTo(timelineItems,
+        { opacity: 0, y: 30, x: -20 },
+        { opacity: 1, y: 0, x: 0, duration: 0.8, stagger: 0.15 },
+        '-=0.6'
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

@@ -2,7 +2,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styles from './AboutSection.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = () => {
   const sectionRef = useRef(null);
@@ -12,56 +15,49 @@ const AboutSection = () => {
   const tagsRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    // Use IntersectionObserver to trigger animations when the section enters viewport
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Initialize GSAP animation timeline
-          const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-          // 1. Animate card outline (fade in, slide up, glow)
-          tl.to(cardRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            boxShadow: '0 30px 100px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 140, 58, 0.12)'
-          });
-
-          // 2. Slide in headers
-          tl.fromTo(titleRef.current.children,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 },
-            '-=0.8'
-          );
-
-          // 3. Stagger paragraph contents (p, ul, p)
-          tl.fromTo(contentRef.current.children,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 },
-            '-=0.6'
-          );
-
-          // 4. Stagger tech tags at the bottom
-          tl.fromTo(tagsRef.current.children,
-            { opacity: 0, scale: 0.85 },
-            { opacity: 1, scale: 1, duration: 0.6, stagger: 0.08 },
-            '-=0.7'
-          );
-
-          // Disconnect observer after single fire
-          observer.unobserve(section);
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play reverse play reverse',
+          markers: false
         }
       });
-    }, { threshold: 0.15 });
 
-    observer.observe(section);
+      tl.fromTo(cardRef.current,
+        { opacity: 0, y: 80, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          boxShadow: '0 30px 100px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 140, 58, 0.12)'
+        }
+      );
 
-    return () => {
-      observer.disconnect();
-    };
+      tl.fromTo(titleRef.current.children,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 },
+        '-=0.8'
+      );
+
+      tl.fromTo(contentRef.current.children,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 },
+        '-=0.6'
+      );
+
+      tl.fromTo(tagsRef.current.children,
+        { opacity: 0, scale: 0.85 },
+        { opacity: 1, scale: 1, duration: 0.6, stagger: 0.08 },
+        '-=0.7'
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

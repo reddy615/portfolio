@@ -50,7 +50,7 @@
   justify-content: space-between;
   height: auto;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(80px) scale(0.95);
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
