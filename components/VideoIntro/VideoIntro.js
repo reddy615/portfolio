@@ -187,11 +187,14 @@ const VideoIntro = () => {
 
       // After the hero intro timeline completes, auto-scroll to About section
       tl.eventCallback('onComplete', () => {
+        console.log('Hero animation completed');
+
         // Reset cancel flag
         autoScrollCancelled.current = false;
 
         // Handler that cancels the pending auto-scroll on user interaction
-        const onUserInteract = () => {
+        const onUserInteract = (e) => {
+          console.log('User interaction detected, cancelling auto-scroll', e.type);
           autoScrollCancelled.current = true;
           if (autoScrollTimerRef.current) {
             clearTimeout(autoScrollTimerRef.current);
@@ -219,9 +222,11 @@ const VideoIntro = () => {
         };
 
         // Wait 1s then perform smooth native scroll if not cancelled
+        console.log('Starting 1s timer for auto-scroll to WHO I AM');
         autoScrollTimerRef.current = setTimeout(() => {
           autoScrollTimerRef.current = null;
           if (autoScrollCancelled.current) {
+            console.log('Auto-scroll cancelled before trigger');
             if (removeCancelListenersRef.current) {
               removeCancelListenersRef.current();
               removeCancelListenersRef.current = null;
@@ -229,9 +234,12 @@ const VideoIntro = () => {
             return;
           }
 
-          const aboutSection = document.getElementById('about-section');
+          const aboutSection = document.getElementById('who-am-i');
           if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: 'smooth' });
+            console.log('Auto scroll triggered — target found: who-am-i');
+            aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            console.log('Auto scroll target not found: who-am-i');
           }
 
           // cleanup listeners after initiating scroll

@@ -65,7 +65,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.aboutSection} id="about-section">
+    <section ref={sectionRef} className={styles.aboutSection} id="who-am-i">
       {/* Visual background glows */}
       <div className={styles.blueGlow} />
       <div className={styles.orangeGlow} />
