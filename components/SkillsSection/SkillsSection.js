@@ -172,6 +172,7 @@ const SkillsSection = () => {
           </div>
         </aside>
       </div>
+    </div>
     </section>
   );
 };
