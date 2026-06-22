@@ -62,7 +62,7 @@ const EducationSection = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: 'bottom top+=160',
+          end: 'bottom top+=900',
           scrub: 0.35,
           pin: cardRef.current,
           pinSpacing: false,
@@ -71,18 +71,20 @@ const EducationSection = () => {
         }
       });
 
+      tl.to({}, { duration: 0.4 });
+
       tl.to(cardRef.current, {
         opacity: 0.4,
         scale: 0.92,
         y: -80,
         ease: 'power1.out'
-      }, 0);
+      }, 0.4);
 
       if (nextCard) {
         tl.fromTo(nextCard,
           { opacity: 0.92, scale: 0.92, y: 80 },
           { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },
-          0
+          0.4
         );
       }
     }, sectionRef);
