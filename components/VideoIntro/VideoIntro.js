@@ -147,19 +147,35 @@ const VideoIntro = () => {
         }
       });
 
+      const aboutCard = document.querySelector('#who-am-i [class*=card]');
+      if (aboutCard) {
+        gsap.set(aboutCard, {
+          opacity: 0.72,
+          scale: 0.92,
+          y: 120,
+          filter: 'blur(10px)',
+          transformPerspective: 2000,
+        });
+        heroScrollTl.fromTo(
+          aboutCard,
+          { opacity: 0.72, scale: 0.92, y: 120, filter: 'blur(10px)' },
+          { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', ease: 'power1.out' },
+          0
+        );
+      }
       heroScrollTl.to(
         `.${styles.contentOverlay}`,
-        { y: -120, opacity: 0.16, ease: 'none' },
+        { y: -180, opacity: 0, ease: 'none' },
         0
       );
       heroScrollTl.to(
         `.${styles.videoForegroundWrapper}`,
-        { scale: 1.1, ease: 'none' },
+        { scale: 1.08, ease: 'none' },
         0
       );
       heroScrollTl.to(
         `.${styles.bgVideo}`,
-        { opacity: 0.3, ease: 'none' },
+        { opacity: 0.24, ease: 'none' },
         0
       );
     }, containerRef);
