@@ -54,8 +54,11 @@ const ContactSection = () => {
 
       <div ref={cardRef} className={styles.card}>
         <div ref={titleRef} className={styles.header}>
-          <div className={styles.tagline}>Get In Touch</div>
-          <h2 className={styles.title}>Contact</h2>
+          <div>
+            <div className={styles.tagline}>Get In Touch</div>
+            <h2 className={styles.title}>Contact</h2>
+          </div>
+          <span className={styles.sectionNumber}>06</span>
         </div>
 
         <div ref={infoRef} className={styles.contactInfo}>

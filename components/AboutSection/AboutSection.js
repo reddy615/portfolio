@@ -70,8 +70,11 @@ const AboutSection = () => {
       <div ref={cardRef} className={styles.card}>
         {/* Section Title Header */}
         <div ref={titleRef} className={styles.header}>
-          <div className={styles.tagline}>About Profile</div>
-          <h2 className={styles.title}>Who I Am</h2>
+          <div>
+            <div className={styles.tagline}>About Profile</div>
+            <h2 className={styles.title}>Who I Am</h2>
+          </div>
+          <span className={styles.sectionNumber}>01</span>
         </div>
 
         {/* Biography Content Blocks */}
