@@ -31,14 +31,21 @@ const SkillsSection = () => {
         }
       });
 
-      gsap.set(cardRef.current, { position: 'relative', zIndex: 10 });
+      gsap.set(cardRef.current, {
+        position: 'relative',
+        zIndex: 10,
+        transformPerspective: 1200,
+      });
 
       tl.to({}, { duration: 0.4 });
 
       tl.to(cardRef.current, {
-        opacity: 0.4,
-        scale: 0.92,
-        y: -80,
+        opacity: 0.85,
+        scale: 0.96,
+        rotationX: 4,
+        y: -20,
+        filter: 'blur(3px)',
+        boxShadow: '0 30px 80px rgba(0,0,0,0.35)',
         ease: 'power1.out',
       }, 0.4);
 
@@ -49,11 +56,18 @@ const SkillsSection = () => {
       }, 0);
 
       if (nextCard) {
-        gsap.set(nextCard, { opacity: 0.92, scale: 0.92, y: 80 });
+        gsap.set(nextCard, {
+          opacity: 0.85,
+          scale: 0.92,
+          rotationX: -4,
+          y: 20,
+          zIndex: 9,
+          transformPerspective: 1200,
+        });
         tl.fromTo(nextCard,
-          { opacity: 0.92, scale: 0.92, y: 80 },
-          { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },
-          0.4
+          { opacity: 0.85, scale: 0.92, rotationX: -4, y: 20 },
+          { opacity: 1, scale: 1, rotationX: 0, y: 0, ease: 'power1.out' },
+          '<0.35'
         );
       }
     }, sectionRef);
