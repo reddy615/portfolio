@@ -147,7 +147,7 @@ const VideoIntro = () => {
         }
       });
 
-      const aboutCard = document.querySelector('#who-am-i [class*=card]');
+      const aboutCard = document.querySelector('[data-section="who-am-i"]');
       if (aboutCard) {
         gsap.set(aboutCard, {
           opacity: 0.72,

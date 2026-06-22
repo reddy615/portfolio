@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import CinematicLayer from '@/components/CinematicLayer/CinematicLayer';
 import VideoIntro from '@/components/VideoIntro/VideoIntro';
+import SharedDeck from '@/components/SharedDeck/SharedDeck';
 import AboutSection from '@/components/AboutSection/AboutSection';
 import SkillsSection from '@/components/SkillsSection/SkillsSection';
 import EducationSection from '@/components/EducationSection/EducationSection';
@@ -11,7 +12,6 @@ import ContactSection from '@/components/ContactSection/ContactSection';
 import styles from './page.module.css';
 
 export default function Home() {
-
   return (
     <main className={styles.pageContainer}>
       {/* 1. Cinematic Hero Area */}
@@ -23,19 +23,16 @@ export default function Home() {
         <VideoIntro />
       </div>
 
-      {/* 2. Standalone Animated About Section */}
+      {/* 2. Shared pinned deck for section cards */}
+      <SharedDeck />
+
+      {/* 3. Scroll anchor sections for the shared deck */}
       <AboutSection />
-
-      {/* 3. Standalone Animated Technical Skills Section */}
       <SkillsSection />
-
-      {/* 4. Standalone Animated Education Section */}
       <EducationSection />
-
-      {/* 5. Standalone Animated Projects Section */}
       <ProjectsSection />
 
-      {/* 6. Contact Section */}
+      {/* 4. Contact Section */}
       <ContactSection />
     </main>
   );

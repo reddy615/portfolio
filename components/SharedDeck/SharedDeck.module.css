@@ -1,0 +1,26 @@
+.sharedDeck {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: visible;
+  display: block;
+  pointer-events: none;
+}
+
+.sharedCard {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94vw, 1800px);
+  max-width: 1800px;
+  min-height: 560px;
+  max-height: 760px;
+  pointer-events: auto;
+}
+
+.sharedCard > * {
+  width: 100%;
+}
