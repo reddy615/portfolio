@@ -16,28 +16,6 @@ const VideoIntro = () => {
   const autoScrollCancelled = useRef(false);
   const removeCancelListenersRef = useRef(null);
 
-  // Synchronize play state of background and foreground videos
-  const syncPlayback = (playing) => {
-    const bg = bgVideoRef.current;
-    const fg = fgVideoRef.current;
-    if (bg && fg) {
-      if (playing) {
-        // Play both
-        const p1 = fg.play();
-        const p2 = bg.play();
-        
-        // Handle play promise warnings in browsers
-        Promise.all([p1, p2]).catch((err) => {
-          console.warn('Playback failed or interrupted:', err);
-        });
-      } else {
-        // Pause both
-        fg.pause();
-        bg.pause();
-      }
-    }
-  };
-
   // Sync play/pause click
   const togglePlay = () => {
     const fg = fgVideoRef.current;
@@ -45,18 +23,15 @@ const VideoIntro = () => {
     if (!fg || !bg) return;
 
     if (fg.paused) {
-      console.log('Play clicked');
       Promise.all([fg.play(), bg.play()])
         .then(() => {
           setIsPlaying(true);
-          console.log('Play succeeded');
         })
         .catch((err) => {
           console.warn('Playback failed or interrupted:', err);
           setIsPlaying(!fg.paused);
         });
     } else {
-      console.log('Pause clicked');
       fg.pause();
       bg.pause();
       setIsPlaying(false);
@@ -73,13 +48,8 @@ const VideoIntro = () => {
     fg.volume = nextMuted ? 0 : 1;
     setAudioEnabled(!nextMuted);
 
-    if (nextMuted) {
-      console.log('Audio muted');
-    } else {
-      console.log('Audio enabled');
-      if (fg.paused) {
-        fg.play().catch((err) => console.warn('Foreground audio playback failed:', err));
-      }
+    if (!nextMuted && fg.paused) {
+      fg.play().catch((err) => console.warn('Foreground audio playback failed:', err));
     }
   };
 
@@ -101,14 +71,10 @@ const VideoIntro = () => {
     const bg = bgVideoRef.current;
     const fg = fgVideoRef.current;
 
-    console.log('Video mounted');
-    console.log('Video source:', '/videos/intro.mp4');
-
     if (bg && fg) {
       bg.muted = true; // bg video MUST always be muted
       fg.muted = true; // foreground video must also be muted for autoplay
 
-      console.log('Video play attempt');
       bg.play().catch((err) => console.warn('Background video autoplay blocked:', err));
       fg.play().catch((err) => console.warn('Foreground video autoplay blocked:', err));
     }
@@ -192,13 +158,9 @@ const VideoIntro = () => {
 
   // Handle foreground video end: wait 1s then auto-scroll to WHO I AM (cancelable by user)
   const handleVideoEnd = () => {
-    console.log('Video ended');
-
-    // Reset cancel flag
     autoScrollCancelled.current = false;
 
-    const onUserInteract = (e) => {
-      console.log('User interaction detected during post-video delay, cancelling auto-scroll', e.type);
+    const onUserInteract = () => {
       autoScrollCancelled.current = true;
       if (autoScrollTimerRef.current) {
         clearTimeout(autoScrollTimerRef.current);
@@ -222,11 +184,9 @@ const VideoIntro = () => {
       window.removeEventListener('keydown', onUserInteract);
     };
 
-    console.log('Starting 1s timer after video end for auto-scroll to WHO I AM');
     autoScrollTimerRef.current = setTimeout(() => {
       autoScrollTimerRef.current = null;
       if (autoScrollCancelled.current) {
-        console.log('Auto-scroll cancelled after video end');
         if (removeCancelListenersRef.current) {
           removeCancelListenersRef.current();
           removeCancelListenersRef.current = null;
@@ -236,10 +196,7 @@ const VideoIntro = () => {
 
       const target = document.getElementById('who-am-i');
       if (target) {
-        console.log('Auto scroll triggered after video end — scrolling to who-am-i');
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        console.log('Auto scroll target not found after video end: who-am-i');
       }
 
       if (removeCancelListenersRef.current) {
@@ -261,6 +218,7 @@ const VideoIntro = () => {
           muted
           playsInline
           autoPlay
+          preload="metadata"
         />
       </div>
 
@@ -277,14 +235,9 @@ const VideoIntro = () => {
           playsInline
           autoPlay
           preload="auto"
-          onPlay={() => {
-            handleFgPlay();
-            console.log('Video playing');
-          }}
+          onPlay={handleFgPlay}
           onPause={handleFgPause}
           onEnded={handleVideoEnd}
-          onLoadedData={() => console.log('Video loaded')}
-          onError={(e) => console.log('Video error', e)}
         />
       </div>
 
@@ -335,10 +288,7 @@ const VideoIntro = () => {
         {/* Play/Pause Button */}
         <button 
           className={styles.glassBtn} 
-          onClick={() => {
-            console.log('Play button clicked');
-            togglePlay();
-          }}
+          onClick={togglePlay}
           aria-label={isPlaying ? 'Pause video' : 'Play video'}
         >
           {isPlaying ? (
@@ -356,10 +306,7 @@ const VideoIntro = () => {
 
         <button
           className={styles.glassBtn}
-          onClick={() => {
-            console.log('Speaker button clicked');
-            handleToggleAudio();
-          }}
+          onClick={handleToggleAudio}
           aria-label={audioEnabled ? 'Mute audio' : 'Enable audio'}
         >
           {audioEnabled ? (
@@ -379,12 +326,12 @@ const VideoIntro = () => {
       </div>
 
       {/* 6. Centered Pulsing Scroll Down Indicator */}
-      <div className={styles.scrollIndicator} onClick={handleScrollDown}>
+      <button type="button" className={styles.scrollIndicator} onClick={handleScrollDown}>
         <span>SCROLL DOWN</span>
         <div className={styles.scrollLineContainer}>
           <div className={styles.scrollLinePulse} />
         </div>
-      </div>
+      </button>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styles from './ProjectsSection.module.css';
@@ -68,7 +69,13 @@ const ProjectsSection = () => {
           {/* Project 1 */}
           <div className={styles.card}>
             <div className={styles.projectImage}>
-              <img src="/ai-interview-screenshot.png" alt="AI Interview Preparation Platform screenshot" className={styles.projectScreenshot} />
+              <Image
+                src="/ai-interview-screenshot.png"
+                alt="AI Interview Preparation Platform screenshot"
+                fill
+                className={styles.projectScreenshot}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
             <div className={styles.cardIcon}>
               <svg viewBox="0 0 24 24">
@@ -103,8 +110,14 @@ const ProjectsSection = () => {
 
           {/* Project 2 */}
           <div className={styles.card}>
-            <div className={styles.projectImage} aria-hidden="true">
-              <img src="/doctors-farms-screenshot.png" alt="Doctors Farms Resort Booking Website screenshot" className={styles.projectScreenshot} />
+            <div className={styles.projectImage}>
+              <Image
+                src="/doctors-farms-screenshot.png"
+                alt="Doctors Farms Resort Booking Website screenshot"
+                fill
+                className={styles.projectScreenshot}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
             <div className={styles.cardIcon}>
               <svg viewBox="0 0 24 24">

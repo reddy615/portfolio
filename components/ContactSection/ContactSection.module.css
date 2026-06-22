@@ -99,6 +99,44 @@
   gap: 18px;
 }
 
+.contactActions {
+  margin-top: 24px;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(135deg, rgba(255, 140, 58, 0.18), rgba(255, 255, 255, 0.08));
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 20px 40px rgba(255, 140, 58, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.downloadButton:hover,
+.downloadButton:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 140, 58, 0.32);
+  box-shadow: 0 26px 56px rgba(255, 140, 58, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.pdfIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: #ffb982;
+}
+
 .contactText {
   font-size: 1.05rem;
   line-height: 1.8;
@@ -133,5 +171,10 @@
 
   .contactText {
     font-size: 1rem;
+  }
+
+  .downloadButton {
+    width: 100%;
+    justify-content: center;
   }
 }
