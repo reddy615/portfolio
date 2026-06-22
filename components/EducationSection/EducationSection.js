@@ -73,17 +73,18 @@ const EducationSection = () => {
       gsap.set(cardRef.current, {
         position: 'relative',
         zIndex: 10,
-        transformPerspective: 1200,
+        transformPerspective: 2000,
       });
 
       tl.to({}, { duration: 0.4 });
 
       tl.to(cardRef.current, {
-        opacity: 0.85,
-        scale: 0.96,
-        rotationX: 4,
+        opacity: 0.78,
+        scale: 0.94,
+        rotationX: 10,
+        rotationY: 2,
         y: -20,
-        filter: 'blur(3px)',
+        filter: 'blur(8px)',
         boxShadow: '0 30px 80px rgba(0,0,0,0.35)',
         ease: 'power1.out'
       }, 0.4);
@@ -96,17 +97,19 @@ const EducationSection = () => {
 
       if (nextCard) {
         gsap.set(nextCard, {
-          opacity: 0.85,
-          scale: 0.92,
-          rotationX: -4,
+          opacity: 0.75,
+          scale: 0.88,
+          rotationX: -10,
+          rotationY: -2,
           y: 20,
+          filter: 'blur(6px)',
           zIndex: 9,
-          transformPerspective: 1200,
+          transformPerspective: 2000,
         });
         tl.fromTo(nextCard,
-          { opacity: 0.85, scale: 0.92, rotationX: -4, y: 20 },
-          { opacity: 1, scale: 1, rotationX: 0, y: 0, ease: 'power1.out' },
-          '<0.35'
+          { opacity: 0.75, scale: 0.88, rotationX: -10, rotationY: -2, y: 20, filter: 'blur(6px)' },
+          { opacity: 1, scale: 1, rotationX: 0, rotationY: 0, y: 0, filter: 'blur(0px)', ease: 'power1.out' },
+          '<0.6'
         );
       }
     }, sectionRef);
