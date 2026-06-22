@@ -17,32 +17,43 @@ const ProjectsSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.set(cardRef.current, { opacity: 0.92, scale: 0.92, y: 80 });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 60%',
-          end: 'bottom 20%',
+          start: 'top top',
+          end: 'bottom top+=700',
           scrub: 0.35,
+          pin: cardRef.current,
+          pinSpacing: false,
+          anticipatePin: 1,
           markers: false
         }
       });
 
+      tl.fromTo(cardRef.current,
+        { opacity: 0.92, scale: 0.92, y: 80 },
+        { opacity: 1, scale: 1, y: 0, ease: 'power1.out' },
+        0
+      );
+
       tl.fromTo(titleRef.current.children,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 },
-        0
+        0.2
       );
 
       tl.fromTo(gridRef.current.children,
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 },
-        0
+        0.3
       );
 
       tl.fromTo(footerRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.8 },
-        0
+        0.4
       );
     }, sectionRef);
 

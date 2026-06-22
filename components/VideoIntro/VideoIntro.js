@@ -136,6 +136,34 @@ const VideoIntro = () => {
         { opacity: 1, y: 0, duration: 1.2 },
         '-=0.8'
       );
+
+      const heroScrollTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top+=120',
+          scrub: 0.65,
+          pin: containerRef.current,
+          pinSpacing: false,
+          markers: false,
+        }
+      });
+
+      heroScrollTl.to(
+        `.${styles.contentOverlay}`,
+        { y: -120, opacity: 0.18, ease: 'none' },
+        0
+      );
+      heroScrollTl.to(
+        `.${styles.videoForegroundWrapper}`,
+        { scale: 1.1, ease: 'none' },
+        0
+      );
+      heroScrollTl.to(
+        `.${styles.bgVideo}`,
+        { opacity: 0.32, ease: 'none' },
+        0
+      );
     }, containerRef);
 
     return () => {

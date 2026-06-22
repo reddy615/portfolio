@@ -41,6 +41,12 @@ const AboutSection = () => {
         ease: 'power1.out',
       }, 0.4);
 
+      tl.to([styles.blueGlow, styles.orangeGlow].map((className) => sectionRef.current.querySelector(`.${className}`)), {
+        y: -18,
+        opacity: 0.85,
+        ease: 'none',
+      }, 0);
+
       if (nextCard) {
         gsap.set(nextCard, { opacity: 0.92, scale: 0.92, y: 80 });
         tl.fromTo(nextCard,
