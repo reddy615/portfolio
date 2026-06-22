@@ -155,6 +155,7 @@ const SkillsSection = () => {
             </div>
           </div>
         </div>
+      </div>
 
         <aside className={styles.cardAside}>
           <div className={styles.highlightPanel}>
