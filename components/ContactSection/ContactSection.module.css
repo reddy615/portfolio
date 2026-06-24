@@ -2,87 +2,50 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: 90px 6%;
+  padding: 96px 6%;
   background: #050508;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
-  overflow: hidden;
-}
-
-.blueGlow {
-  position: absolute;
-  top: -15%;
-  left: 5%;
-  width: 450px;
-  height: 450px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 102, 204, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-.orangeGlow {
-  position: absolute;
-  bottom: -15%;
-  right: 5%;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 140, 58, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
-  filter: blur(90px);
-  pointer-events: none;
 }
 
 .card {
+  position: relative;
   width: min(94vw, 1800px);
   max-width: 1800px;
-  height: 72vh;
-  max-height: 760px;
-  background: rgba(10, 10, 10, 0.55);
-  backdrop-filter: blur(24px);
+  min-height: 560px;
+  background: rgba(10, 10, 14, 0.98);
   border: 1px solid rgba(255, 180, 100, 0.25);
   border-radius: 32px;
   padding: 60px 70px;
-  box-shadow: 0 0 40px rgba(255, 140, 60, 0.12), 0 0 80px rgba(255, 140, 60, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 140, 60, 0.12);
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: minmax(0, 3fr) minmax(260px, 2fr);
   gap: 40px;
   align-items: stretch;
-  position: relative;
-  opacity: 0;
-  transform: translateY(80px) scale(0.95);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.cardMain,
+.cardAside {
+  display: flex;
+  flex-direction: column;
 }
 
 .cardMain {
-  display: flex;
-  flex-direction: column;
   gap: 30px;
 }
 
 .cardAside {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.card:hover {
-  border-color: rgba(255, 180, 100, 0.45);
-  box-shadow:
-    0 0 60px rgba(255, 140, 60, 0.18),
-    0 0 100px rgba(255, 140, 60, 0.14);
-  transform: translateY(-2px) scale(1);
+  justify-content: center;
+  gap: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding-left: 36px;
 }
 
 .header {
   width: 100%;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sectionNumber {
@@ -95,7 +58,6 @@
   opacity: 0.18;
   line-height: 0.85;
   letter-spacing: -0.05em;
-  z-index: 2;
 }
 
 .tagline {
@@ -105,81 +67,29 @@
   color: #ff8c3a;
   margin-bottom: 12px;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.tagline::before {
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: #ff8c3a;
 }
 
 .title {
-  font-size: 3.4rem;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
   font-weight: 900;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   margin: 0;
 }
 
-.contactInfo {
+.contactDetails {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-}
-
-.contactActions {
-  margin-top: 24px;
-}
-
-.downloadButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 14px 24px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(135deg, rgba(255, 140, 58, 0.18), rgba(255, 255, 255, 0.08));
-  color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  box-shadow: 0 20px 40px rgba(255, 140, 58, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-
-.downloadButton:hover,
-.downloadButton:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(255, 140, 58, 0.32);
-  box-shadow: 0 26px 56px rgba(255, 140, 58, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.pdfIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  color: #ffb982;
+  gap: 12px;
 }
 
 .contactText {
   font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .contactLink {
@@ -191,27 +101,79 @@
   color: #ffffff;
 }
 
-.contactNote {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.62);
-  margin: 0 0 0 0.25rem;
-  line-height: 1.75;
-  max-width: 760px;
+.highlightTitle {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin: 0;
 }
 
-@media (max-width: 768px) {
+.highlightText {
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.contactActions {
+  margin-top: 12px;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 140, 58, 0.14);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.downloadButton:hover,
+.downloadButton:focus-visible {
+  border-color: rgba(255, 140, 58, 0.4);
+  background: rgba(255, 140, 58, 0.22);
+}
+
+.pdfIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: #ffb982;
+}
+
+.pdfIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 900px) {
   .contactSection {
-    padding: 90px 6%;
     min-height: auto;
-  }
-  .card {
-    width: 95vw;
-    min-height: 620px;
-    padding: 48px 28px;
+    padding: 72px 4%;
   }
 
-  .title {
-    font-size: 2.2rem;
+  .card {
+    width: 100%;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+  }
+
+  .cardAside {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 28px 0 0;
+  }
+
+  .sectionNumber {
+    font-size: 3rem;
   }
 
   .contactText {

@@ -147,22 +147,6 @@ const VideoIntro = () => {
         }
       });
 
-      const aboutCard = document.querySelector('[data-section="who-am-i"]');
-      if (aboutCard) {
-        gsap.set(aboutCard, {
-          opacity: 0.72,
-          scale: 0.92,
-          y: 120,
-          filter: 'blur(10px)',
-          transformPerspective: 2000,
-        });
-        heroScrollTl.fromTo(
-          aboutCard,
-          { opacity: 0.72, scale: 0.92, y: 120, filter: 'blur(10px)' },
-          { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', ease: 'power1.out' },
-          0
-        );
-      }
       heroScrollTl.to(
         `.${styles.contentOverlay}`,
         { y: -180, opacity: 0, ease: 'none' },
