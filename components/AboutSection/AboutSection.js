@@ -55,8 +55,7 @@ export default function AboutSection() {
           </header>
 
           <p className={styles.bioText}>
-            I am a B.Tech student building AI-driven web applications with modern full-stack
-            systems and polished production-ready delivery.
+            I am P. Akshay Reddy, a B.Tech student specializing in AI Driven Languages and Technologies. Passionate about Full Stack Development, Artificial Intelligence, and building scalable web applications that solve real-world problems through modern technologies and innovative solutions.
           </p>
 
           <div className={styles.badgeRow}>
