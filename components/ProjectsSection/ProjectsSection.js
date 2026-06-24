@@ -127,9 +127,19 @@ export default function ProjectsSection() {
                   <div className={styles.projectMediaGlow}></div>
                   <div className={styles.projectMediaLabel}>{project.accent}</div>
                   <div className={styles.projectMediaScreen}>
-                    <span className={styles.projectMediaDot}></span>
-                    <span className={styles.projectMediaDot}></span>
-                    <span className={styles.projectMediaDot}></span>
+                    {project.id === 2 ? (
+                      <img
+                        src="/doctors-farms-screenshot.png"
+                        alt="Doctors Farms Resort"
+                        className={styles.projectImage}
+                      />
+                    ) : (
+                      <div className={styles.projectMediaScreenInner}>
+                        <span className={styles.projectMediaDot}></span>
+                        <span className={styles.projectMediaDot}></span>
+                        <span className={styles.projectMediaDot}></span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
