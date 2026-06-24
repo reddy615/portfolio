@@ -1,34 +1,6 @@
 import styles from './ProjectsSection.module.css';
 
-const PROJECTS = [
-  {
-    title: 'AI Interview Preparation Platform',
-    status: 'In Development',
-    description: 'AI-driven assessment and mock interview experience with adaptive practice and analytics.',
-  },
-  {
-    title: 'Doctors Farms Resort Booking Website',
-    status: 'Live',
-    description: 'Full-stack booking site with polished UI, reservation workflows, and email confirmation automation.',
-  },
-];
-
-const PROJECT_SUPPORT = [
-  {
-    label: 'Strategic UX',
-    description: 'Designing premium user journeys that feel effortless across desktop and mobile.',
-  },
-  {
-    label: 'Robust workload',
-    description: 'Building secure APIs, data models, and deployment scripts for production readiness.',
-  },
-  {
-    label: 'AI-enabled value',
-    description: 'Adding intelligent automation and data-driven recommendation flows.',
-  },
-];
-
-const PROJECT_BADGES = ['UX Design', 'Full-stack', 'Deployment', 'AI-Ready'];
+const PROJECT_BADGES = ['AI Interview Platform', 'Doctors Farms Resort', 'MERN', 'AI'];
 
 export default function ProjectsSection() {
   return (
@@ -37,46 +9,25 @@ export default function ProjectsSection() {
         <span className={styles.sectionNumber}>04</span>
 
         <div className={styles.cardMain}>
-          <header className={styles.sectionHeaderRow}>
-            <div>
-              <div className={styles.sectionTagline}>Selected Works</div>
-              <h2 id="projects-title" className={styles.sectionTitle}>
-                Projects
-              </h2>
-            </div>
+          <header className={styles.header}>
+            <div className={styles.tagline}>Selected Works</div>
+            <h2 id="projects-title" className={styles.title}>
+              Projects
+            </h2>
           </header>
 
-          <p className={styles.projectDescription}>
-            Delivered modern web products with polished UX, deployment-ready architecture,
-            and intelligent integration points.
+          <p className={styles.bioText}>
+            I build modern web applications with polished UX, full-stack integration, and
+            deployment-ready architecture for real-world use.
           </p>
 
-          <div className={styles.supportBlock}>
-            {PROJECT_SUPPORT.map((item) => (
-              <div key={item.label} className={styles.detailItem}>
-                <span className={styles.detailLabel}>{item.label}</span>
-                <span className={styles.detailText}>{item.description}</span>
-              </div>
-            ))}
-          </div>
-
           <div className={styles.badgeRow}>
-            {PROJECT_BADGES.map((badge) => (
-              <span key={badge} className={styles.badgeItem}>
-                {badge}
+            {PROJECT_BADGES.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
               </span>
             ))}
           </div>
-
-          <ul className={styles.projectsList}>
-            {PROJECTS.map((project) => (
-              <li key={project.title} className={styles.projectItem}>
-                <span className={styles.projectName}>{project.title}</span>
-                <span className={styles.projectStatus}>{project.status}</span>
-                <p className={styles.projectSummary}>{project.description}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

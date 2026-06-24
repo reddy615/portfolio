@@ -13,15 +13,16 @@
   position: relative;
   width: min(94vw, 1800px);
   max-width: 1800px;
-  min-height: 700px;
+  min-height: 520px;
+  max-height: 650px;
   background: rgba(8, 8, 12, 0.98);
   border: 1px solid rgba(255, 180, 100, 0.25);
   border-radius: 32px;
-  padding: 56px 64px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 30px rgba(255, 140, 60, 0.12);
+  padding: 48px 60px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35), 0 0 28px rgba(255, 140, 60, 0.12);
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 32px;
 }
 
 .cardMain {
@@ -31,10 +32,9 @@
   max-width: 72%;
 }
 
-.sectionHeaderRow {
-  width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.header {
   padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sectionNumber {
@@ -49,16 +49,16 @@
   letter-spacing: -0.05em;
 }
 
-.sectionTagline {
+.tagline {
   font-size: 0.8rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #ff8c3a;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-weight: 600;
 }
 
-.sectionTitle {
+.title {
   font-size: clamp(2.3rem, 5vw, 3.4rem);
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -67,39 +67,11 @@
   margin: 0;
 }
 
-.projectDescription {
+.bioText {
   color: rgba(255, 255, 255, 0.78);
   line-height: 1.8;
-  max-width: 90%;
   margin: 0;
-}
-
-.supportBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-left: 16px;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.detailItem {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.detailLabel {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #ffb982;
-}
-
-.detailText {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.76);
+  max-width: 72ch;
 }
 
 .badgeRow {
@@ -108,7 +80,7 @@
   gap: 10px;
 }
 
-.badgeItem {
+.tag {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -117,54 +89,6 @@
   border: 1px solid rgba(255, 140, 58, 0.15);
   border-radius: 999px;
   color: #ffb982;
-}
-
-.projectsList {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding-left: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.projectItem {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.projectName {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 6px;
-}
-
-.projectStatus {
-  display: inline-flex;
-  margin-bottom: 10px;
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ffb982;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.projectSummary {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.7;
-  max-width: 90%;
-}
-
-@media (max-width: 1000px) {
-  .projectsList {
-    flex-direction: column;
-  }
 }
 
 @media (max-width: 900px) {
@@ -185,10 +109,5 @@
 
   .sectionNumber {
     font-size: 3rem;
-  }
-
-  .supportBlock {
-    padding-left: 0;
-    border-left: none;
   }
 }
