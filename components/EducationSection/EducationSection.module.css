@@ -13,8 +13,8 @@
   position: relative;
   width: min(96vw, 1600px);
   max-width: 1600px;
-  min-height: 520px;
-  max-height: 600px;
+  min-height: 620px;
+  max-height: 900px;
   background: rgba(8, 8, 12, 0.98);
   border: 1px solid rgba(255, 180, 100, 0.25);
   border-radius: 32px;
@@ -27,8 +27,9 @@
 .cardMain {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  max-width: 70%;
+  gap: 32px;
+  width: 100%;
+  max-width: 85%;
 }
 
 .header {
@@ -66,28 +67,110 @@
   margin: 0;
 }
 
-.bioText {
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.8;
-  margin: 0;
-  max-width: 72ch;
-}
-
-.badgeRow {
+/* Timeline Layout */
+.timeline {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
 }
 
-.tag {
-  font-size: 0.75rem;
+.timelineItem {
+  display: grid;
+  grid-template-columns: 120px 40px 1fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.timelineYear {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 16px;
+}
+
+.year {
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 8px 16px;
-  background: rgba(255, 140, 58, 0.05);
-  border: 1px solid rgba(255, 140, 58, 0.15);
-  border-radius: 999px;
-  color: #ffb982;
+  letter-spacing: 0.02em;
+  color: #ff8c3a;
+  white-space: nowrap;
+}
+
+.timelineDivider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.timelineMarker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ff8c3a;
+  border: 3px solid rgba(255, 140, 58, 0.3);
+  box-shadow: 0 0 12px rgba(255, 140, 58, 0.4);
+  z-index: 2;
+}
+
+.timelineLine {
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 140, 58, 0.4), transparent);
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.degreeTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.field {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+.detail {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.label {
+  font-weight: 600;
+  color: #ff8c3a;
+  margin-right: 6px;
+}
+
+.status {
+  font-size: 0.85rem;
+  color: rgba(255, 180, 100, 0.88);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 4px 0 0 0;
+  padding: 0;
+  text-transform: capitalize;
 }
 
 @media (max-width: 900px) {
@@ -104,9 +187,82 @@
 
   .cardMain {
     max-width: 100%;
+    gap: 24px;
   }
 
   .sectionNumber {
     font-size: 3rem;
+  }
+
+  .timelineItem {
+    grid-template-columns: 100px 40px 1fr;
+    gap: 16px;
+  }
+
+  .year {
+    font-size: 0.85rem;
+  }
+
+  .timelineMarker {
+    width: 12px;
+    height: 12px;
+    border-width: 2px;
+  }
+
+  .timelineLine {
+    height: 60px;
+  }
+
+  .degreeTitle {
+    font-size: 1rem;
+  }
+
+  .field {
+    font-size: 0.9rem;
+  }
+
+  .detail {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 32px 16px;
+  }
+
+  .cardMain {
+    gap: 16px;
+  }
+
+  .timelineItem {
+    grid-template-columns: 70px 30px 1fr;
+    gap: 12px;
+  }
+
+  .year {
+    font-size: 0.75rem;
+  }
+
+  .timelineMarker {
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+  }
+
+  .timelineLine {
+    height: 50px;
+  }
+
+  .degreeTitle {
+    font-size: 0.9rem;
+  }
+
+  .field {
+    font-size: 0.8rem;
+  }
+
+  .detail {
+    font-size: 0.75rem;
   }
 }
