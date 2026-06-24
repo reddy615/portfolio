@@ -23,12 +23,14 @@ const EDUCATION_TIMELINE = [
     year: '2021 - 2023',
     degree: 'Intermediate (MPC)',
     marks: '617 / 1000',
+    percentage: '61.7%',
   },
   {
     id: 3,
-    year: '',
+    year: '2021',
     degree: 'CBSE 10th',
     cgpa: '6.51',
+    percentage: '61.85%',
   },
 ];
 
@@ -168,6 +170,13 @@ export default function EducationSection() {
                     <p className={styles.detail}>
                       <span className={styles.label}>CGPA:</span>
                       {entry.cgpa}
+                    </p>
+                  )}
+
+                  {entry.percentage && (
+                    <p className={styles.detail}>
+                      <span className={styles.label}>Percentage:</span>
+                      {entry.percentage}
                     </p>
                   )}
 
