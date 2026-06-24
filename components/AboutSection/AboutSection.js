@@ -39,23 +39,21 @@ export default function AboutSection() {
               I enjoy solving real-world problems through software engineering and
               continuously improving my development skills.
             </p>
-          </div>
-        </div>
 
-        <aside className={styles.cardAside}>
-          <div className={styles.tagsSection}>
-            <h3 className={styles.tagsLabel}>Core Focus Areas</h3>
-            <div className={styles.tagsList}>
-              {['FULL STACK', 'REACT', 'NODE.JS', 'MONGODB', 'AI/ML', 'CLOUD'].map(
-                (tag) => (
-                  <span key={tag} className={styles.tag}>
-                    {tag}
-                  </span>
-                )
-              )}
+            <div className={styles.tagsSection}>
+              <h3 className={styles.tagsLabel}>Core Focus Areas</h3>
+              <div className={styles.tagsList}>
+                {['FULL STACK', 'REACT', 'NODE.JS', 'MONGODB', 'AI/ML', 'CLOUD'].map(
+                  (tag) => (
+                    <span key={tag} className={styles.tag}>
+                      {tag}
+                    </span>
+                  )
+                )}
+              </div>
             </div>
           </div>
-        </aside>
+        </div>
       </article>
     </section>
   );
