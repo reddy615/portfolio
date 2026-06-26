@@ -12,13 +12,11 @@ const CONTACT_DETAILS = [
     label: 'GitHub',
     value: 'github.com/reddy615',
     href: 'https://github.com/reddy615',
-    note: 'Explore my projects, source code, and technical contributions.',
   },
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/akshayreddy-polareddy-42664b399',
     href: 'https://www.linkedin.com/in/akshayreddy-polareddy-42664b399/',
-    note: "Let's connect and discuss opportunities, technology, and innovation.",
   },
   {
     label: 'Email',
@@ -78,56 +76,67 @@ export default function ContactSection() {
             <h2 className={styles.title}>Contact</h2>
           </header>
 
-          <div className={styles.contactList}>
-            {CONTACT_DETAILS.map((item) => (
-              <div key={item.label} className={styles.contactBlock}>
-                <div className={styles.contactRow}>
-                  <span className={styles.contactLabel}>{item.label}:</span>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className={styles.contactValue}
-                      target={item.label === 'Email' ? undefined : '_blank'}
-                      rel={item.label === 'Email' ? undefined : 'noopener noreferrer'}
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <span className={styles.contactValue}>{item.value}</span>
-                  )}
-                </div>
-                {item.note && <p className={styles.contactNote}>{item.note}</p>}
-              </div>
-            ))}
-          </div>
+          <div className={styles.contentGrid}>
+            <div className={styles.leftColumn}>
+              <p className={styles.bioText}>Let's build something great together.</p>
 
-          <a
-            href="/resume/2300090002_AkshayReddy.pdf"
-            download="2300090002_AkshayReddy.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.downloadButton}
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
-              style={{ marginRight: 8, flexShrink: 0 }}
-            >
-              <path
-                d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinejoin="round"
-              />
-              <path d="M14 2v5h5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-              <path d="M8 14h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M8 11h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-            <span>DOWNLOAD RESUME</span>
-          </a>
+              <div className={styles.contactList}>
+                {CONTACT_DETAILS.map((item) => (
+                  <div key={item.label} className={styles.contactRow}>
+                    <span className={styles.contactLabel}>{item.label}:</span>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className={styles.contactValue}
+                        target={item.label === 'Email' ? undefined : '_blank'}
+                        rel={item.label === 'Email' ? undefined : 'noopener noreferrer'}
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className={styles.contactValue}>{item.value}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/resume/2300090002_AkshayReddy.pdf"
+                download="2300090002_AkshayReddy.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.downloadButton}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                  style={{ marginRight: 8, flexShrink: 0 }}
+                >
+                  <path
+                    d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinejoin="round"
+                  />
+                  <path d="M14 2v5h5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                  <path d="M8 14h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <path d="M8 11h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+                <span>DOWNLOAD RESUME</span>
+              </a>
+            </div>
+
+            <aside className={styles.availabilityPanel}>
+              <div className={styles.availabilityTop}>AVAILABLE FOR OPPORTUNITIES</div>
+              <div className={styles.availabilityBody}>Full Stack Developer</div>
+              <div className={styles.availabilityBody}>AI Enthusiast</div>
+              <div className={styles.availabilityBody}>MERN Stack</div>
+              <div className={styles.availabilityBody}>React • Node • MongoDB</div>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
