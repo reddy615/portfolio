@@ -28,7 +28,7 @@ const PROJECTS = [
     features: ['Resort booking', 'Inquiry management', 'Email notifications', 'Responsive design'],
     accent: 'RESORT BOOKING',
     githubUrl: 'https://github.com/reddy615',
-    liveUrl: '#',
+    liveUrl: 'https://doctorsfarmnunna.in',
   },
 ];
 
@@ -152,9 +152,50 @@ export default function ProjectsSection() {
                     <a className={styles.primaryButton} href={project.githubUrl} target="_blank" rel="noreferrer">
                       GitHub
                     </a>
-                    <a className={styles.secondaryButton} href={project.liveUrl} target="_blank" rel="noreferrer">
-                      Live Demo
-                    </a>
+                    {project.id === 2 ? (
+                      <a
+                        className={styles.secondaryButton}
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                          style={{ marginRight: 8, flexShrink: 0 }}
+                        >
+                          <path
+                            d="M14 4h6v6"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M10 14L20 4"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M20 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        LIVE LINK
+                      </a>
+                    ) : (
+                      <a className={styles.secondaryButton} href={project.liveUrl} target="_blank" rel="noreferrer">
+                        Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
