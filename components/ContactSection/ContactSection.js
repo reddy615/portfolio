@@ -67,11 +67,27 @@ export default function ContactSection() {
           <a
             href="/resume/2300090002_AkshayReddy.pdf"
             download="2300090002_AkshayReddy.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
             className={styles.downloadButton}
           >
-            Download Resume
+            <svg
+              className={styles.pdfIcon}
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
+              <path d="M14 2v5h5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              <path d="M8 14h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M8 11h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+            <span>DOWNLOAD RESUME</span>
           </a>
         </div>
       </div>
