@@ -53,11 +53,11 @@ const VideoIntro = () => {
     }
   };
 
-  // Clicking scroll down indicator
+  // Clicking scroll down indicator or VIEW PROJECTS button
   const handleScrollDown = () => {
-    const aboutSection = document.getElementById('who-am-i');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    const projectsSection = document.getElementById('projects-section');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       window.scrollTo({
         top: window.innerHeight,
