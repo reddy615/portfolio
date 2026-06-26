@@ -7,18 +7,29 @@ import styles from './ContactSection.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CONTACT_LINKS = [
+const CONTACT_DETAILS = [
   {
     label: 'GitHub',
+    value: 'github.com/reddy615',
     href: 'https://github.com/reddy615',
   },
   {
     label: 'LinkedIn',
+    value: 'linkedin.com/in/akshayreddy-polareddy-42664b399',
     href: 'https://www.linkedin.com/in/akshayreddy-polareddy-42664b399/',
   },
   {
     label: 'Email',
+    value: '2300090002csit@gmail.com',
     href: 'mailto:2300090002csit@gmail.com',
+  },
+  {
+    label: 'Location',
+    value: '📍 Nunna, Vijayawada, Andhra Pradesh, India',
+  },
+  {
+    label: 'Status',
+    value: 'Available for Opportunities',
   },
 ];
 
@@ -65,27 +76,23 @@ export default function ContactSection() {
             <h2 className={styles.title}>Contact</h2>
           </header>
 
-          <p className={styles.bioText}>
-            P. Akshay Reddy
-            <br />
-            2300090002csit@gmail.com
-            <br />
-            Nunna, Vijayawada, Andhra Pradesh, India
-            <br />
-            Available for Opportunities
-          </p>
-
-          <div className={styles.badgeRow}>
-            {CONTACT_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={styles.tag}
-                target={link.label === 'Email' ? undefined : '_blank'}
-                rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}
-              >
-                {link.label}
-              </a>
+          <div className={styles.contactList}>
+            {CONTACT_DETAILS.map((item) => (
+              <div key={item.label} className={styles.contactRow}>
+                <span className={styles.contactLabel}>{item.label}:</span>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    className={styles.contactValue}
+                    target={item.label === 'Email' ? undefined : '_blank'}
+                    rel={item.label === 'Email' ? undefined : 'noopener noreferrer'}
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  <span className={styles.contactValue}>{item.value}</span>
+                )}
+              </div>
             ))}
           </div>
 
