@@ -16,7 +16,7 @@ const PROJECTS = [
     stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'OpenAI/Gemini APIs', 'Judge0'],
     features: ['AI mock interviews', 'Coding assessments', 'Performance analytics', 'Real-time evaluation'],
     accent: 'AI INTERVIEW',
-    githubUrl: 'https://github.com/reddy615',
+    githubUrl: 'https://github.com/reddy615/AI',
     liveUrl: '#',
     status: 'in-progress',
   },
