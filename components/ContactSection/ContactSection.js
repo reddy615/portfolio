@@ -7,7 +7,20 @@ import styles from './ContactSection.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CONTACT_BADGES = ['GitHub', 'LinkedIn', 'Email'];
+const CONTACT_LINKS = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/reddy615',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/akshayreddy-polareddy-42664b399/',
+  },
+  {
+    label: 'Email',
+    href: 'mailto:2300090002csit@gmail.com',
+  },
+];
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
@@ -53,29 +66,43 @@ export default function ContactSection() {
           </header>
 
           <p className={styles.bioText}>
-            Reach out for web development, AI integrations, and polished product launch support.
+            P. Akshay Reddy
+            <br />
+            2300090002csit@gmail.com
+            <br />
+            Nunna, Vijayawada, Andhra Pradesh, India
+            <br />
+            Available for Opportunities
           </p>
 
           <div className={styles.badgeRow}>
-            {CONTACT_BADGES.map((tag) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
+            {CONTACT_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={styles.tag}
+                target={link.label === 'Email' ? undefined : '_blank'}
+                rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}
+              >
+                {link.label}
+              </a>
             ))}
           </div>
 
           <a
             href="/resume/2300090002_AkshayReddy.pdf"
             download="2300090002_AkshayReddy.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.downloadButton}
           >
             <svg
-              className={styles.pdfIcon}
               width="16"
               height="16"
               viewBox="0 0 24 24"
               fill="none"
               aria-hidden="true"
+              style={{ marginRight: 8, flexShrink: 0 }}
             >
               <path
                 d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z"
