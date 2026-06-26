@@ -12,11 +12,13 @@ const CONTACT_DETAILS = [
     label: 'GitHub',
     value: 'github.com/reddy615',
     href: 'https://github.com/reddy615',
+    note: 'Explore my projects, source code, and technical contributions.',
   },
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/akshayreddy-polareddy-42664b399',
     href: 'https://www.linkedin.com/in/akshayreddy-polareddy-42664b399/',
+    note: "Let's connect and discuss opportunities, technology, and innovation.",
   },
   {
     label: 'Email',
@@ -78,20 +80,23 @@ export default function ContactSection() {
 
           <div className={styles.contactList}>
             {CONTACT_DETAILS.map((item) => (
-              <div key={item.label} className={styles.contactRow}>
-                <span className={styles.contactLabel}>{item.label}:</span>
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    className={styles.contactValue}
-                    target={item.label === 'Email' ? undefined : '_blank'}
-                    rel={item.label === 'Email' ? undefined : 'noopener noreferrer'}
-                  >
-                    {item.value}
-                  </a>
-                ) : (
-                  <span className={styles.contactValue}>{item.value}</span>
-                )}
+              <div key={item.label} className={styles.contactBlock}>
+                <div className={styles.contactRow}>
+                  <span className={styles.contactLabel}>{item.label}:</span>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className={styles.contactValue}
+                      target={item.label === 'Email' ? undefined : '_blank'}
+                      rel={item.label === 'Email' ? undefined : 'noopener noreferrer'}
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span className={styles.contactValue}>{item.value}</span>
+                  )}
+                </div>
+                {item.note && <p className={styles.contactNote}>{item.note}</p>}
               </div>
             ))}
           </div>
