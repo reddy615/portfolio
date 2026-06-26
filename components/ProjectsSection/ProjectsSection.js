@@ -28,7 +28,7 @@ const PROJECTS = [
     stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Railway'],
     features: ['Resort booking', 'Inquiry management', 'Email notifications', 'Responsive design'],
     accent: 'RESORT BOOKING',
-    githubUrl: 'https://github.com/reddy615',
+    githubUrl: 'https://github.com/reddy615/doctors-farms',
     liveUrl: 'https://doctorsfarmnunna.in',
   },
 ];
